@@ -1,6 +1,6 @@
 // Script feito por Brock Investimentos 
 // @Youtube -  Brock Investimentos - https://www.youtube.com/channel/UCXzzaYaHVzoFVDNs8RPKR5Q
-
+// Created at 19-02-2021
 // VIDEO EXPLICANDO
 
 //@version=4
@@ -35,7 +35,7 @@ orangeCycleType1 = isRedCandle(4)   and isRedCandle(3)   and isGreenCandle(2) an
 orangeCycleType2 = isGreenCandle(4) and isGreenCandle(3) and isRedCandle(2)   and isGreenCandle(1) and isGreenCandle(0)
 orangeCycle = orangeCycleType1 or orangeCycleType2
 
-bgcolor(blueCycleEnabled and blueCycle and tradingWindow? color.blue : na, 60)
-bgcolor(pinkCycleEnabled and pinkCycle and tradingWindow? color.fuchsia : na, 60)
-bgcolor(greenCycleEnabled and greenCycle and tradingWindow? color.green : na, 60)
-bgcolor(orangeCycleEnabled and orangeCycle and tradingWindow? color.orange : na, 60)
+bgcolor(blueCycleEnabled   and blueCycle   and tradingWindow? color.blue :    na, 60)
+bgcolor(pinkCycleEnabled   and pinkCycle   and tradingWindow? color.fuchsia : na, 60)
+bgcolor(greenCycleEnabled  and greenCycle  and tradingWindow? color.green :   na, 60)
+bgcolor(orangeCycleEnabled and orangeCycle and tradingWindow? color.orange :  na, 60)
