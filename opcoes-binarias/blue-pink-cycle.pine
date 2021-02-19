@@ -11,9 +11,9 @@ minHour = input(defval=0, title="Começo dos trade (hora)", minval=0, maxval=23)
 maxHour = input(defval=23, title="Fechar todas as operações (hora)", minval=0, maxval=23)
 tradingWindow = hour >= minHour and hour <= maxHour
 
-pinkCycleEnabled = input(title="Ciclo Rosa", type=input.bool, defval=true)
-blueCycleEnabled = input(title="Ciclo Azul", type=input.bool, defval=true)
-greenCycleEnabled = input(title="Ciclo Verde", type=input.bool, defval=true)
+pinkCycleEnabled   = input(title="Ciclo Rosa",    type=input.bool, defval=true)
+blueCycleEnabled   = input(title="Ciclo Azul",    type=input.bool, defval=true)
+greenCycleEnabled  = input(title="Ciclo Verde",   type=input.bool, defval=true)
 orangeCycleEnabled = input(title="Ciclo Laranja", type=input.bool, defval=true)
 
 isGreenCandle(index) => close[index] > open[index]
