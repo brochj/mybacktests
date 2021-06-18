@@ -1,0 +1,42 @@
+// This source code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © brochj
+
+//@version=4
+study(title="Médias Móveis", overlay=true)
+
+src = input(title="Source", type=input.source, defval=close)
+
+sma1 = input(title="01: sma período", type=input.integer, defval=10, minval=0, inline="Period")
+sma2 = input(title="02: sma período", type=input.integer, defval=25, minval=0, inline="Period")
+sma3 = input(title="03: sma período", type=input.integer, defval=40, minval=0, inline="Period")
+sma4 = input(title="04: sma período", type=input.integer, defval=55, minval=0, inline="Period")
+sma5 = input(title="05: sma período", type=input.integer, defval=70, minval=0, inline="Period")
+sma6 = input(title="06: sma período", type=input.integer, defval=85, minval=0, inline="Period")
+sma7 = input(title="07: sma período", type=input.integer, defval=100, minval=0, inline="Period")
+sma8 = input(title="08: sma período", type=input.integer, defval=115, minval=0, inline="Period")
+sma9 = input(title="09: sma período", type=input.integer, defval=130, minval=0, inline="Period")
+sma10 = input(title="10: sma período", type=input.integer, defval=145, minval=0, inline="Period")
+sma11 = input(title="11: sma período", type=input.integer, defval=160, minval=0, inline="Period")
+sma12 = input(title="12: sma período", type=input.integer, defval=175, minval=0, inline="Period")
+sma13 = input(title="13: sma período", type=input.integer, defval=190, minval=0, inline="Period")
+sma14 = input(title="14: sma período", type=input.integer, defval=205, minval=0, inline="Period")
+sma15 = input(title="15: sma período", type=input.integer, defval=220, minval=0, inline="Period")
+sma16 = input(title="16: sma período", type=input.integer, defval=235, minval=0, inline="Period")
+
+plot(sma(src, sma1), title="sma 1", color=color.red, linewidth=1)
+plot(sma(src, sma2), title="sma 2", color=color.maroon, linewidth=1)
+plot(sma(src, sma3), title="sma 3", color=color.orange, linewidth=1)
+plot(sma(src, sma4), title="sma 4", color=color.yellow, linewidth=2)
+plot(sma(src, sma5), title="sma 5", color=color.green, linewidth=2)
+plot(sma(src, sma6), title="sma 6", color=color.teal, linewidth=2)
+plot(sma(src, sma7), title="sma 7", color=color.olive, linewidth=3)
+plot(sma(src, sma8), title="sma 8", color=color.lime, linewidth=3)
+plot(sma(src, sma9), title="sma 9", color=color.aqua, linewidth=3)
+plot(sma(src, sma10), title="sma 10", color=color.blue, linewidth=4)
+plot(sma(src, sma11), title="sma 11", color=color.navy, linewidth=4)
+plot(sma(src, sma12), title="sma 12", color=color.fuchsia, linewidth=4)
+plot(sma(src, sma13), title="sma 13", color=color.purple, linewidth=4)
+plot(sma(src, sma14), title="sma 14", color=color.silver, linewidth=4)
+plot(sma(src, sma15), title="sma 15", color=color.gray, linewidth=4)
+plot(sma(src, sma16), title="sma 16", color=color.black, linewidth=4)
+

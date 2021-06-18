@@ -1,0 +1,98 @@
+// This source code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © brochj
+
+//@version=4
+
+study(title = "Candle a candle TESTE", overlay = true)
+
+
+isRedCandle(i) => close[i] < open[i]
+isGreenCandle(i) => close[i] > open[i]
+
+// Rompimento de Máxima 
+highBreakout(i) => high[i] > high[i + 1]
+// Rompimento de Mínima
+lowBreakout(i) => low[i] < low[i + 1]
+// Sem rompimento de Máxima
+noHighBreakout(i) => high[i] <= high[i + 1]
+// Sem rompimento de Mínima
+noLowBreakout(i) => low[i] >= low[i + 1]
+// Fechamento acima da máxima
+closeAbove(i) => close[i] > high[i + 1]
+// Fechamento abaixo da mínima
+closeBelow(i) => close[i] < low[i + 1]
+// Fechamento dentro do candle
+closeInside(i) => close[i] >= low[i + 1] and close[i] <= high[i + 1] 
+// Fechamento na Zona de Proteção Vendedora
+closeZPVenda(i) => (isGreenCandle(i + 1) ? close[i] > close[i + 1] and close[i] <= high[i + 1] : close[i] > open[i + 1] and close[i] <= high[i + 1])
+// Fechamento na Zona de Proteção Compradora
+closeZPCompra(i) =>  (isGreenCandle(i + 1) ? close[i] < open[i + 1] and close[i] >= low[i + 1] : close[i] < close[i + 1] and close[i] >= low[i + 1])
+// Fechamento no corpo
+closeCorpo(i) => (isGreenCandle(i + 1) ? (close[i] >= open[i + 1] and close[i] <= close[i + 1]) : (close[i] <= open[i + 1] and close[i] >= close[i + 1]))
+
+isInsideBar(i) => (noHighBreakout(i) and noLowBreakout(i))
+isTrueHighBreakout(i) => highBreakout(i) and noLowBreakout(i) and closeAbove(i)
+isTrueLowBreakout(i) => lowBreakout(i) and noHighBreakout(i) and closeBelow(i)
+
+isFalseHighBreakout(i) => highBreakout(i) and noLowBreakout(i) and closeInside(i)
+isFalseLowBreakout(i) => noHighBreakout(i) and lowBreakout(i) and closeInside(i)
+
+isOutsideFalseBreakout(i) => highBreakout(i) and lowBreakout(i) and closeInside(i)
+isOutsideHighBreakout(i) => highBreakout(i) and lowBreakout(i) and closeAbove(i)
+isOutsideLowBreakout(i) => highBreakout(i) and lowBreakout(i) and closeBelow(i)
+
+// Inside Bars 1.1 e 1.2
+// barcolor((isInsideBar(0) and  closeCorpo(0) ? color.navy : na), title="Inside Bars com fechamento no corpo") // 1.1 e 1.2
+// barcolor((isInsideBar(0) and  closeZPVenda(0) ? color.navy : na), title="Inside Bars com closeZPVenda") // 1.3 e 1.4
+// barcolor((isInsideBar(0) and  closeZPCompra(0) ? color.navy : na), title="Inside Bars com closeZPCompra") // 1.5 e 1.6
+
+// Rompimento de Máxima
+// barcolor((isTrueHighBreakout(0) ? color.green : na), title="Rompimento de Máxima") // 2.1 e 2.2
+
+// Rompimento de Mínima
+// barcolor((isTrueLowBreakout(0) ? color.red : na), title="Rompimento de Mínima") // 4.1 e 4.2
+
+// Falso Rompimento de Máxima
+// barcolor((isFalseHighBreakout(0) and  closeZPVenda(0) ? color.fuchsia : na), title="Falso Rompimento de Máxima com closeZPVenda") // 3.1 e 3.2
+// barcolor((isFalseHighBreakout(0) and  closeCorpo(0) ? color.fuchsia : na), title="Falso Rompimento de Máxima com fechamento no corpo") // 3.3 e 3.4
+// barcolor((isFalseHighBreakout(0) and  closeZPCompra(0) ? color.fuchsia : na), title="Falso Rompimento de Máxima com closeZPCompra") // 3.5 e 3.6
+
+// Falso Rompimento de Mínima 
+// barcolor((isFalseLowBreakout(0) and  closeZPVenda(0) ? color.purple : na), title="Falso Rompimento de Mínima com closeZPVenda") // 5.1 e 5.2
+// barcolor((isFalseLowBreakout(0) and  closeCorpo(0) ? color.purple : na), title="Falso Rompimento de Mínima com fechamento no corpo") // 5.3 e 5.4  interessante
+// barcolor((isFalseLowBreakout(0) and  closeZPCompra(0) ? color.purple : na), title="Falso Rompimento de Mínima com closeZPCompra") // 5.5 e 5.6
+
+// Outside Bars com falso rompimento
+// barcolor((isOutsideFalseBreakout(0) and  closeZPVenda(0) ? color.yellow : na), title="Outside Bars com falso rompimento com closeZPVenda") // 6.1 e 6.2
+// barcolor((isOutsideFalseBreakout(0) and  closeCorpo(0) ? color.yellow : na), title="Outside Bars com falso rompimento com fechamento no corpo") // 6.3 e 6.4
+// barcolor((isOutsideFalseBreakout(0) and  closeZPCompra(0) ? color.yellow : na), title="Outside Bars com falso rompimento com closeZPCompra") // 6.5 e 6.6 interessante
+
+// Outside Bar com rompimento de máxima
+// barcolor((isOutsideHighBreakout(0) ? color.green : na), title="Outside Bar com rompimento de máxima") // 7.1 e 7.2
+
+// Outside Bar com rompimento de mínima
+// barcolor((isOutsideLowBreakout(0) ?  #FF0000 : na), title="Outside Bar com rompimento de mínima") // 8.1 e 8.2
+
+
+
+// Candles de COMPRA
+// BOM ! 5/5
+// barcolor((closeZPVenda(0) and noHighBreakout(0) and lowBreakout(0) ?  color.green : na), title="closeZPVenda com rompimento de mínima") // 8.1 e 8.2
+
+// Ruizinho 2/5
+// barcolor((closeZPVenda(0) and noHighBreakout(0) and noLowBreakout(0) ?  color.green : na), title="insideBar com closeZPVenda") // 8.1 e 8.2
+
+// 2/5 acontece muito pouco
+// barcolor((closeZPVenda(0) and highBreakout(0) and lowBreakout(0) ?  color.green : na), title="Outside Bar com closeZPVenda") // 8.1 e 8.2
+
+
+// Candles de VENDA
+// 3/5
+// barcolor((closeZPCompra(0) and highBreakout(0) and noLowBreakout(0) ?  color.red : na), title="closeZPCompra com rompimento de máxima") // 8.1 e 8.2
+
+// 2.5/5
+// barcolor((closeZPCompra(0) and noHighBreakout(0) and noLowBreakout(0) ?  color.red : na), title="insideBar com closeZPCompra") // 8.1 e 8.2
+
+// 2/5 acontece muito pouco
+// barcolor((closeZPCompra(0) and highBreakout(0) and lowBreakout(0) ?  color.red : na), title="Outside Bar com closeZPCompra") // 8.1 e 8.2
+
